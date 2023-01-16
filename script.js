@@ -40,6 +40,18 @@ function makeSound(key) {
     }
 }
 
+function drumAnimation(currentKey) {
+
+    document.querySelector("." + currentKey).classList.add("pressed");
+
+    setTimeout(function () {
+
+        document.querySelector("." + currentKey).classList.remove("pressed");
+
+    }, 100);
+
+}
+
 for(var drum of document.querySelectorAll(".drum")) {
     drum.addEventListener("click", function () {
 
@@ -47,12 +59,16 @@ for(var drum of document.querySelectorAll(".drum")) {
 
         makeSound(drumInnerHtml);
 
+        drumAnimation(drumInnerHtml);
+
     });
 }
 
 document.addEventListener("keydown", function (event) {
 
     makeSound(event.key);
+
+    drumAnimation(event.key);
 
 });
 
